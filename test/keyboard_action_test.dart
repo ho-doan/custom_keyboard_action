@@ -1,7 +1,7 @@
 // import 'package:flutter_test/flutter_test.dart';
-// import 'package:keyboard_action/keyboard_action.dart';
-// import 'package:keyboard_action/keyboard_action_platform_interface.dart';
-// import 'package:keyboard_action/keyboard_action_method_channel.dart';
+// import 'package:custom_keyboard_action/custom_keyboard_action.dart';
+// import 'package:custom_keyboard_action/custom_keyboard_action_platform_interface.dart';
+// import 'package:custom_keyboard_action/custom_keyboard_action_method_channel.dart';
 // import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 // class MockKeyboardActionPlatform

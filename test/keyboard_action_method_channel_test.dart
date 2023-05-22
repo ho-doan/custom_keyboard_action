@@ -1,12 +1,12 @@
 // import 'package:flutter/services.dart';
 // import 'package:flutter_test/flutter_test.dart';
-// import 'package:keyboard_action/keyboard_action_method_channel.dart';
+// import 'package:custom_keyboard_action/custom_keyboard_action_method_channel.dart';
 
 // void main() {
 //   TestWidgetsFlutterBinding.ensureInitialized();
 
 //   MethodChannelKeyboardAction platform = MethodChannelKeyboardAction();
-//   const MethodChannel channel = MethodChannel('keyboard_action');
+//   const MethodChannel channel = MethodChannel('custom_keyboard_action');
 
 //   setUp(() {
 //     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(

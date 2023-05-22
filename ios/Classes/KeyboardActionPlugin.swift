@@ -7,9 +7,9 @@ public class KeyboardActionPlugin: NSObject, FlutterPlugin {
     var center:NotificationCenter? = nil
     var overlayView = UIView()
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "keyboard_action", binaryMessenger: registrar.messenger())
+        let channel = FlutterMethodChannel(name: "custom_keyboard_action", binaryMessenger: registrar.messenger())
         let instance = KeyboardActionPlugin()
-        FlutterEventChannel(name: "keyboard_action_event", binaryMessenger: registrar.messenger()).setStreamHandler(instance.keyEvent)
+        FlutterEventChannel(name: "custom_keyboard_action_event", binaryMessenger: registrar.messenger()).setStreamHandler(instance.keyEvent)
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
     

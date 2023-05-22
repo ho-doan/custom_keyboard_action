@@ -1,4 +1,4 @@
-group 'com.hodoan.keyboard_action'
+group 'com.hodoan.custom_keyboard_action'
 version '1.0-SNAPSHOT'
 
 buildscript {

@@ -1,6 +1,6 @@
-# keyboard_action_example
+# custom_keyboard_action_example
 
-Demonstrates how to use the keyboard_action plugin.
+Demonstrates how to use the custom_keyboard_action plugin.
 
 ## Getting Started
 

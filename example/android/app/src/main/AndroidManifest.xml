@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="keyboard_action_example"
+        android:label="custom_keyboard_action_example"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

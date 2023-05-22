@@ -3,16 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'keyboard_action_platform_interface.dart';
-import 'src/generated/keyboard_action.pb.dart';
+import 'custom_keyboard_action_platform_interface.dart';
+import 'src/generated/custom_keyboard_action.pb.dart';
 
-class KeyboardAction {
-  KeyboardAction._();
+class CustomKeyboardAction {
+  CustomKeyboardAction._();
   TextInputType? type;
-  static KeyboardAction get instance => KeyboardAction._();
-  Future<bool> initial() => KeyboardActionPlatform.instance.initial();
+  static CustomKeyboardAction get instance => CustomKeyboardAction._();
+  Future<bool> initial() => CustomKeyboardActionPlatform.instance.initial();
   Stream<ActionKeyboard> actionKeyboard() =>
-      KeyboardActionPlatform.instance.actionKeyboard();
+      CustomKeyboardActionPlatform.instance.actionKeyboard();
 }
 
 class TextFormFieldCustomKeyboard extends StatefulWidget {
@@ -145,10 +145,10 @@ class _TextFormFieldCustomKeyboardState
   late FocusNode focusNode;
   @override
   void initState() {
-    KeyboardActionPlatform.instance.initial();
+    CustomKeyboardActionPlatform.instance.initial();
     keyboardType = widget.keyboardType ?? TextInputType.text;
     focusNode = widget.focusNode ?? FocusNode();
-    controller = KeyboardAction.instance.actionKeyboard().listen((data) {
+    controller = CustomKeyboardAction.instance.actionKeyboard().listen((data) {
       switch (data) {
         case ActionKeyboard.done:
           FocusScope.of(context).unfocus();

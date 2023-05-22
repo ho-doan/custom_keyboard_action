@@ -1,9 +1,9 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint keyboard_action.podspec` to validate before publishing.
+# Run `pod lib lint custom_keyboard_action.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'keyboard_action'
+  s.name             = 'custom_keyboard_action'
   s.version          = '0.0.1'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC

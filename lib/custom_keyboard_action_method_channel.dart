@@ -1,17 +1,17 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'keyboard_action_platform_interface.dart';
-import 'src/generated/keyboard_action.pb.dart';
+import 'custom_keyboard_action_platform_interface.dart';
+import 'src/generated/custom_keyboard_action.pb.dart';
 
-/// An implementation of [KeyboardActionPlatform] that uses method channels.
-class MethodChannelKeyboardAction extends KeyboardActionPlatform {
+/// An implementation of [CustomKeyboardActionPlatform] that uses method channels.
+class MethodChannelCustomKeyboardAction extends CustomKeyboardActionPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('keyboard_action');
+  final methodChannel = const MethodChannel('custom_keyboard_action');
 
   static EventChannel actionChannel =
-      const EventChannel('keyboard_action_event');
+      const EventChannel('custom_keyboard_action_event');
 
   @override
   Future<bool> initial() => methodChannel.invokeMethod<bool>('initial').then(

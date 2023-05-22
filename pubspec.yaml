@@ -1,7 +1,7 @@
-name: keyboard_action
+name: custom_keyboard_action
 description: custom keyboard action
 version: 0.0.1
-homepage: https://github.com/ho-doan/keyboard_action
+homepage: https://github.com/ho-doan/custom_keyboard_action
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -21,7 +21,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.hodoan.keyboard_action
+        package: com.hodoan.custom_keyboard_action
         pluginClass: KeyboardActionPlugin
       ios:
         pluginClass: KeyboardActionPlugin

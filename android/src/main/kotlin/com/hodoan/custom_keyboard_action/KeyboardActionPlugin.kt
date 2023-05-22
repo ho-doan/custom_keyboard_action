@@ -1,4 +1,4 @@
-package com.hodoan.keyboard_action
+package com.hodoan.custom_keyboard_action
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -38,10 +38,10 @@ class KeyboardActionPlugin : FlutterPlugin, MethodCallHandler,
     private lateinit var activity: Activity
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "keyboard_action")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "custom_keyboard_action")
         EventChannel(
             flutterPluginBinding.binaryMessenger,
-            "keyboard_action_event"
+            "custom_keyboard_action_event"
         ).setStreamHandler(
             keyEvent
         )
@@ -106,7 +106,7 @@ class KeyboardActionPlugin : FlutterPlugin, MethodCallHandler,
                 )
                 layout.gravity = Gravity.BOTTOM or Gravity.LEFT
                 val linearLayout =
-                    LayoutInflater.from(context).inflate(R.layout.keyboard_action, null)
+                    LayoutInflater.from(context).inflate(R.layout.custom_keyboard_action, null)
                 val doneBtn: TextView = linearLayout.findViewById(R.id.done)
                 doneBtn.setOnClickListener {
                     keyEvent.success(ProtobufModel.ActionKeyboard.done)

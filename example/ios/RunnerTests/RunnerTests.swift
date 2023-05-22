@@ -2,7 +2,7 @@ import Flutter
 import UIKit
 import XCTest
 
-@testable import keyboard_action
+@testable import custom_keyboard_action
 
 // This demonstrates a simple unit test of the Swift portion of this plugin's implementation.
 //

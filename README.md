@@ -1,9 +1,9 @@
-# keyboard_action
+# custom_keyboard_action
 
-* [![keyboard_action version](https://img.shields.io/pub/v/keyboard_action?label=keyboard_action)](https://pub.dev/packages/keyboard_action)
-[![keyboard_action size](https://img.shields.io/github/repo-size/ho-doan/keyboard_action)](https://github.com/ho-doan/keyboard_action)
-[![keyboard_action issues](https://img.shields.io/github/issues/ho-doan/keyboard_action)](https://github.com/ho-doan/keyboard_action)
-[![keyboard_action issues](https://img.shields.io/pub/likes/keyboard_action)](https://github.com/ho-doan/keyboard_action)
+* [![custom_keyboard_action version](https://img.shields.io/pub/v/custom_keyboard_action?label=custom_keyboard_action)](https://pub.dev/packages/custom_keyboard_action)
+[![custom_keyboard_action size](https://img.shields.io/github/repo-size/ho-doan/custom_keyboard_action)](https://github.com/ho-doan/custom_keyboard_action)
+[![custom_keyboard_action issues](https://img.shields.io/github/issues/ho-doan/custom_keyboard_action)](https://github.com/ho-doan/custom_keyboard_action)
+[![custom_keyboard_action issues](https://img.shields.io/pub/likes/custom_keyboard_action)](https://github.com/ho-doan/custom_keyboard_action)
 * Bluetooth Low Energy (BLE) plugin that can communicate with single device
 
 # Demo
@@ -22,7 +22,7 @@
 #### Android ProGuard rules
 
 ```txt
--keep class com.hodoan.keyboard_action.** { *; }
+-keep class com.hodoan.custom_keyboard_action.** { *; }
 ```
 
 ### Usage

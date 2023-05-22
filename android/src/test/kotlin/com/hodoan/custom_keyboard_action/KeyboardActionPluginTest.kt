@@ -1,4 +1,4 @@
-package com.hodoan.keyboard_action
+package com.hodoan.custom_keyboard_action
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel

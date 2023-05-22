@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:keyboard_action/keyboard_action.dart';
+import 'package:custom_keyboard_action/custom_keyboard_action.dart';
 
 void main() {
   runApp(const MyApp());

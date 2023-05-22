@@ -1,5 +1,5 @@
 syntax = "proto3";
-option java_package = "com.hodoan.keyboard_action";
+option java_package = "com.hodoan.custom_keyboard_action";
 option java_outer_classname = "ProtobufModel";
 enum ActionKeyboard {
     done = 0;

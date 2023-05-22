@@ -1,1 +1,1 @@
--keep class com.hodoan.keyboard_action.** { *; }
+-keep class com.hodoan.custom_keyboard_action.** { *; }

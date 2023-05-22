@@ -1,7 +1,7 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'keyboard_action_method_channel.dart';
-import 'src/generated/keyboard_action.pb.dart';
+import 'custom_keyboard_action_method_channel.dart';
+import 'src/generated/custom_keyboard_action.pb.dart';
 
 enum Action {
   done,
@@ -9,23 +9,24 @@ enum Action {
   down,
 }
 
-abstract class KeyboardActionPlatform extends PlatformInterface {
+abstract class CustomKeyboardActionPlatform extends PlatformInterface {
   /// Constructs a KeyboardActionPlatform.
-  KeyboardActionPlatform() : super(token: _token);
+  CustomKeyboardActionPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
-  static KeyboardActionPlatform _instance = MethodChannelKeyboardAction();
+  static CustomKeyboardActionPlatform _instance =
+      MethodChannelCustomKeyboardAction();
 
-  /// The default instance of [KeyboardActionPlatform] to use.
+  /// The default instance of [CustomKeyboardActionPlatform] to use.
   ///
   /// Defaults to [MethodChannelKeyboardAction].
-  static KeyboardActionPlatform get instance => _instance;
+  static CustomKeyboardActionPlatform get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [KeyboardActionPlatform] when
+  /// platform-specific class that extends [CustomKeyboardActionPlatform] when
   /// they register themselves.
-  static set instance(KeyboardActionPlatform instance) {
+  static set instance(CustomKeyboardActionPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }
