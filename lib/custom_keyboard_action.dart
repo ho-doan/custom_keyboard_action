@@ -71,6 +71,7 @@ class TextFormFieldCustomKeyboard extends StatefulWidget {
     this.expands = false,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.enableIMEPersonalizedLearning = true,
+    this.maxLines,
   });
 
   final TextEditingController controller;
@@ -100,7 +101,7 @@ class TextFormFieldCustomKeyboard extends StatefulWidget {
   final SmartQuotesType? smartQuotesType;
   final bool enableSuggestions;
   final MaxLengthEnforcement? maxLengthEnforcement;
-  final int? maxLines = 1;
+  final int? maxLines;
   final int? minLines;
   final bool expands;
   final int? maxLength;
