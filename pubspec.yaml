@@ -1,6 +1,6 @@
 name: custom_keyboard_action
 description: custom keyboard action
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/ho-doan/custom_keyboard_action
 
 environment:
