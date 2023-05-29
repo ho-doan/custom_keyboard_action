@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'custom_keyboard_action_platform_interface.dart';
-import 'src/generated/custom_keyboard_action.pb.dart';
 
 /// An implementation of [CustomKeyboardActionPlatform] that uses method channels.
 class MethodChannelCustomKeyboardAction extends CustomKeyboardActionPlatform {
@@ -14,13 +13,7 @@ class MethodChannelCustomKeyboardAction extends CustomKeyboardActionPlatform {
       const EventChannel('custom_keyboard_action_event');
 
   @override
-  Future<bool> initial() => methodChannel.invokeMethod<bool>('initial').then(
-        (_) => _ ?? false,
+  Stream<bool> actionKeyboard() => actionChannel.receiveBroadcastStream().map(
+        (event) => event ?? false,
       );
-
-  @override
-  Stream<ActionKeyboard> actionKeyboard() =>
-      actionChannel.receiveBroadcastStream().map(
-            (event) => ActionKeyboard.values[event],
-          );
 }

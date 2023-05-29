@@ -1,4 +1,3 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hodoan.custom_keyboard_action">
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 </manifest>

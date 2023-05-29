@@ -13,24 +13,14 @@
 
 ## Futures
 
-- Add sub view keyboard
-
-## Getting Started
-
-### android
-
-#### Android ProGuard rules
-
-```txt
--keep class com.hodoan.custom_keyboard_action.** { *; }
-```
+- Add Scaffold widget keyboard
 
 ### Usage
 
 #### Scan Device
 
 ```dart
-TextFormFieldCustomKeyboard(
-    controller: TextEditingController(),
+ScaffoldKeyboard(
+    body: ...,
 ),
 ```

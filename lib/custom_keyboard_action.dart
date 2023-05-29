@@ -1,243 +1,191 @@
 import 'dart:async';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'custom_keyboard_action_platform_interface.dart';
-import 'src/generated/custom_keyboard_action.pb.dart';
 
 class CustomKeyboardAction {
   CustomKeyboardAction._();
   TextInputType? type;
   static CustomKeyboardAction get instance => CustomKeyboardAction._();
-  Future<bool> initial() => CustomKeyboardActionPlatform.instance.initial();
-  Stream<ActionKeyboard> actionKeyboard() =>
+  Stream<bool> actionKeyboard() =>
       CustomKeyboardActionPlatform.instance.actionKeyboard();
 }
 
-class TextFormFieldCustomKeyboard extends StatefulWidget {
-  const TextFormFieldCustomKeyboard({
-    super.key,
-    required this.controller,
-    this.initialValue,
-    this.focusNode,
-    this.keyboardType,
-    this.textInputAction,
-    this.style,
-    this.strutStyle,
-    this.textDirection,
-    this.textAlignVertical,
-    this.toolbarOptions,
-    this.showCursor,
-    this.smartDashesType,
-    this.smartQuotesType,
-    this.maxLengthEnforcement,
-    this.minLines,
-    this.maxLength,
-    this.onChanged,
-    this.onTap,
-    this.onTapOutside,
-    this.onEditingComplete,
-    this.onFieldSubmitted,
-    this.onSaved,
-    this.validator,
-    this.inputFormatters,
-    this.enabled,
-    this.cursorHeight,
-    this.cursorRadius,
-    this.cursorColor,
-    this.keyboardAppearance,
-    this.enableInteractiveSelection,
-    this.selectionControls,
-    this.buildCounter,
-    this.scrollPhysics,
-    this.autofillHints,
-    this.autovalidateMode,
-    this.scrollController,
-    this.restorationId,
-    this.mouseCursor,
-    this.spellCheckConfiguration,
-    this.magnifierConfiguration,
-    this.autofocus = false,
-    this.readOnly = false,
-    this.obscureText = false,
-    this.contextMenuBuilder,
-    this.cursorWidth = 2.0,
-    this.textAlign = TextAlign.start,
-    this.decoration,
-    this.textCapitalization = TextCapitalization.none,
-    this.autocorrect = true,
-    this.enableSuggestions = true,
-    this.expands = false,
-    this.scrollPadding = const EdgeInsets.all(20.0),
-    this.enableIMEPersonalizedLearning = true,
-    this.maxLines,
-  });
-
-  final TextEditingController controller;
-  final String? initialValue;
-  final FocusNode? focusNode;
-  final InputDecoration? decoration;
-  final TextInputType? keyboardType;
-  final TextCapitalization textCapitalization;
-  final TextInputAction? textInputAction;
-  final TextStyle? style;
-  final StrutStyle? strutStyle;
-  final TextDirection? textDirection;
-  final TextAlign textAlign;
-  final TextAlignVertical? textAlignVertical;
-  final bool autofocus;
-  final bool readOnly;
-  @Deprecated(
-    'Use `contextMenuBuilder` instead. '
-    'This feature was deprecated after v3.3.0-0.5.pre.',
-  )
-  final ToolbarOptions? toolbarOptions;
-  final bool? showCursor;
-  final String obscuringCharacter = '•';
-  final bool obscureText;
-  final bool autocorrect;
-  final SmartDashesType? smartDashesType;
-  final SmartQuotesType? smartQuotesType;
-  final bool enableSuggestions;
-  final MaxLengthEnforcement? maxLengthEnforcement;
-  final int? maxLines;
-  final int? minLines;
-  final bool expands;
-  final int? maxLength;
-  final ValueChanged<String>? onChanged;
-  final GestureTapCallback? onTap;
-  final TapRegionCallback? onTapOutside;
-  final VoidCallback? onEditingComplete;
-  final ValueChanged<String>? onFieldSubmitted;
-  final void Function(String?)? onSaved;
-  final String? Function(String?)? validator;
-  final List<TextInputFormatter>? inputFormatters;
-  final bool? enabled;
-  final double cursorWidth;
-  final double? cursorHeight;
-  final Radius? cursorRadius;
-  final Color? cursorColor;
-  final Brightness? keyboardAppearance;
-  final EdgeInsets scrollPadding;
-  final bool? enableInteractiveSelection;
-  final TextSelectionControls? selectionControls;
-  final InputCounterWidgetBuilder? buildCounter;
-  final ScrollPhysics? scrollPhysics;
-  final Iterable<String>? autofillHints;
-  final AutovalidateMode? autovalidateMode;
-  final ScrollController? scrollController;
-  final String? restorationId;
-  final bool enableIMEPersonalizedLearning;
-  final MouseCursor? mouseCursor;
-  final EditableTextContextMenuBuilder? contextMenuBuilder;
-  final SpellCheckConfiguration? spellCheckConfiguration;
-  final TextMagnifierConfiguration? magnifierConfiguration;
+class KeyboardAction extends StatelessWidget {
+  const KeyboardAction({super.key});
 
   @override
-  State<TextFormFieldCustomKeyboard> createState() =>
-      _TextFormFieldCustomKeyboardState();
+  Widget build(BuildContext context) {
+    return Container(
+      height: 40,
+      padding: const EdgeInsets.symmetric(
+        vertical: 2,
+        horizontal: 4,
+      ),
+      decoration: const BoxDecoration(
+        color: Color(0xffd1d4d9),
+      ),
+      child: Row(
+        children: [
+          const SizedBox(width: 4),
+          GestureDetector(
+            onTap: () => FocusScope.of(context).previousFocus(),
+            child: const Icon(
+              Icons.keyboard_arrow_up,
+              color: Colors.lightBlue,
+            ),
+          ),
+          const SizedBox(width: 10),
+          GestureDetector(
+            onTap: () => FocusScope.of(context).nextFocus(),
+            child: const Icon(
+              Icons.keyboard_arrow_down,
+              color: Colors.lightBlue,
+            ),
+          ),
+          const Spacer(),
+          GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: const Text(
+              'Done',
+              style: TextStyle(
+                color: Colors.lightBlue,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    );
+  }
 }
 
-class _TextFormFieldCustomKeyboardState
-    extends State<TextFormFieldCustomKeyboard> {
-  late StreamSubscription<ActionKeyboard> controller;
-  late TextInputType keyboardType;
-  late FocusNode focusNode;
+class ScaffoldKeyboard extends StatefulWidget {
+  const ScaffoldKeyboard({
+    super.key,
+    this.keyScaffold,
+    this.extendBody = false,
+    this.extendBodyBehindAppBar = false,
+    this.appBar,
+    this.body,
+    this.floatingActionButton,
+    this.floatingActionButtonLocation,
+    this.floatingActionButtonAnimator,
+    this.persistentFooterButtons,
+    this.persistentFooterAlignment = AlignmentDirectional.centerEnd,
+    this.drawer,
+    this.onDrawerChanged,
+    this.endDrawer,
+    this.onEndDrawerChanged,
+    this.drawerScrimColor,
+    this.backgroundColor,
+    this.bottomNavigationBar,
+    this.bottomSheet,
+    this.resizeToAvoidBottomInset,
+    this.primary = true,
+    this.drawerDragStartBehavior = DragStartBehavior.start,
+    this.drawerEdgeDragWidth,
+    this.drawerEnableOpenDragGesture = true,
+    this.endDrawerEnableOpenDragGesture = true,
+    this.restorationId,
+  });
+
+  final bool extendBody;
+  final Key? keyScaffold;
+  final bool extendBodyBehindAppBar;
+  final PreferredSizeWidget? appBar;
+  final Widget? body;
+  final Widget? floatingActionButton;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final FloatingActionButtonAnimator? floatingActionButtonAnimator;
+  final List<Widget>? persistentFooterButtons;
+  final AlignmentDirectional persistentFooterAlignment;
+  final Widget? drawer;
+  final DrawerCallback? onDrawerChanged;
+  final Widget? endDrawer;
+  final DrawerCallback? onEndDrawerChanged;
+  final Color? drawerScrimColor;
+  final Color? backgroundColor;
+  final Widget? bottomNavigationBar;
+  final Widget? bottomSheet;
+  final bool? resizeToAvoidBottomInset;
+  final bool primary;
+  final DragStartBehavior drawerDragStartBehavior;
+  final double? drawerEdgeDragWidth;
+  final bool drawerEnableOpenDragGesture;
+  final bool endDrawerEnableOpenDragGesture;
+  final String? restorationId;
+
+  @override
+  State<ScaffoldKeyboard> createState() => _ScaffoldKeyboardState();
+}
+
+class _ScaffoldKeyboardState extends State<ScaffoldKeyboard> {
+  late Widget? bottomSheet;
+  late StreamSubscription controller;
+  double padding = 0;
   @override
   void initState() {
-    CustomKeyboardActionPlatform.instance.initial();
-    keyboardType = widget.keyboardType ?? TextInputType.text;
-    focusNode = widget.focusNode ?? FocusNode();
-    controller = CustomKeyboardAction.instance.actionKeyboard().listen((data) {
-      switch (data) {
-        case ActionKeyboard.done:
-          FocusScope.of(context).unfocus();
-          break;
-        case ActionKeyboard.down:
-          // setState(() => keyboardType = TextInputType.number);
-          // focusNode.unfocus();
-          // Future.delayed(const Duration(microseconds: 3), () {
-          //   focusNode.requestFocus();
-          // });
-          // if (FocusScope.of(context).isFirstFocus) return;
-          FocusScope.of(context).nextFocus();
-          break;
-        case ActionKeyboard.up:
-          // setState(
-          //   () => keyboardType = widget.keyboardType ?? TextInputType.text,
-          // );
-          // focusNode.unfocus();
-          // Future.delayed(const Duration(microseconds: 3), () {
-          //   focusNode.requestFocus();
-          // });
-          FocusScope.of(context).previousFocus();
-          break;
+    super.initState();
+    controller = CustomKeyboardAction.instance.actionKeyboard().listen((event) {
+      if (mounted) {
+        if (event) {
+          setState(
+            () {
+              bottomSheet = const KeyboardAction();
+              padding = 40;
+            },
+          );
+        } else {
+          setState(() {
+            bottomSheet = widget.bottomSheet;
+            padding = 0;
+          });
+        }
       }
     });
-    super.initState();
+    bottomSheet = widget.bottomSheet;
   }
 
   @override
   void dispose() {
+    controller.cancel();
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) => TextFormField(
-        autocorrect: widget.autocorrect,
-        autofillHints: widget.autofillHints,
-        autofocus: widget.autofocus,
-        autovalidateMode: widget.autovalidateMode,
-        buildCounter: widget.buildCounter,
-        contextMenuBuilder: widget.contextMenuBuilder,
-        controller: widget.controller,
-        cursorColor: widget.cursorColor,
-        cursorHeight: widget.cursorHeight,
-        cursorRadius: widget.cursorRadius,
-        cursorWidth: widget.cursorWidth,
-        decoration: widget.decoration,
-        enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
-        enableInteractiveSelection: widget.enableInteractiveSelection,
-        enableSuggestions: widget.enableSuggestions,
-        enabled: widget.enabled,
-        expands: widget.expands,
-        focusNode: focusNode,
-        initialValue: widget.initialValue,
-        inputFormatters: widget.inputFormatters,
-        keyboardAppearance: widget.keyboardAppearance,
-        keyboardType: keyboardType,
-        magnifierConfiguration: widget.magnifierConfiguration,
-        maxLength: widget.maxLength,
-        maxLengthEnforcement: widget.maxLengthEnforcement,
-        maxLines: widget.maxLines,
-        minLines: widget.minLines,
-        mouseCursor: widget.mouseCursor,
-        obscureText: widget.obscureText,
-        obscuringCharacter: widget.obscuringCharacter,
-        onChanged: widget.onChanged,
-        onEditingComplete: widget.onEditingComplete,
-        onFieldSubmitted: widget.onFieldSubmitted,
-        onSaved: widget.onSaved,
-        onTap: widget.onTap,
-        onTapOutside: widget.onTapOutside,
-        readOnly: widget.readOnly,
-        restorationId: widget.restorationId,
-        scrollController: widget.scrollController,
-        scrollPadding: widget.scrollPadding,
-        scrollPhysics: widget.scrollPhysics,
-        selectionControls: widget.selectionControls,
-        showCursor: widget.showCursor,
-        smartDashesType: widget.smartDashesType,
-        smartQuotesType: widget.smartQuotesType,
-        spellCheckConfiguration: widget.spellCheckConfiguration,
-        strutStyle: widget.strutStyle,
-        style: widget.style,
-        textAlign: widget.textAlign,
-        textAlignVertical: widget.textAlignVertical,
-        textCapitalization: widget.textCapitalization,
-        textDirection: widget.textDirection,
-        textInputAction: widget.textInputAction,
-        validator: widget.validator,
-      );
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: widget.appBar,
+      backgroundColor: widget.backgroundColor,
+      body: Padding(
+        padding: EdgeInsets.only(bottom: padding),
+        child: widget.body,
+      ),
+      bottomNavigationBar: widget.bottomNavigationBar,
+      bottomSheet: bottomSheet,
+      drawer: widget.drawer,
+      drawerDragStartBehavior: widget.drawerDragStartBehavior,
+      drawerEdgeDragWidth: widget.drawerEdgeDragWidth,
+      drawerEnableOpenDragGesture: widget.drawerEnableOpenDragGesture,
+      drawerScrimColor: widget.drawerScrimColor,
+      endDrawer: widget.endDrawer,
+      endDrawerEnableOpenDragGesture: widget.endDrawerEnableOpenDragGesture,
+      extendBody: widget.extendBody,
+      extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
+      floatingActionButton: widget.floatingActionButton,
+      floatingActionButtonAnimator: widget.floatingActionButtonAnimator,
+      floatingActionButtonLocation: widget.floatingActionButtonLocation,
+      key: widget.keyScaffold,
+      onDrawerChanged: widget.onDrawerChanged,
+      onEndDrawerChanged: widget.onEndDrawerChanged,
+      persistentFooterAlignment: widget.persistentFooterAlignment,
+      persistentFooterButtons: widget.persistentFooterButtons,
+      primary: widget.primary,
+      resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
+      restorationId: widget.restorationId,
+    );
+  }
 }
