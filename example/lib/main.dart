@@ -28,8 +28,10 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
+        padding: 80,
         body: const SingleChildScrollView(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               // const Stack(
               //   children: [
@@ -42,7 +44,9 @@ class _MyAppState extends State<MyApp> {
               //   ],
               // ),
               SizedBox(height: 500),
-              TextField(),
+              TextField(
+                scrollPadding: EdgeInsets.all(100),
+              ),
               // TextFormFieldCustomKeyboard(
               //   key: key,
               //   controller: TextEditingController(),

@@ -66,6 +66,7 @@ class ScaffoldKeyboard extends StatefulWidget {
   const ScaffoldKeyboard({
     super.key,
     this.keyScaffold,
+    this.padding = 40,
     this.extendBody = false,
     this.extendBodyBehindAppBar = false,
     this.appBar,
@@ -90,6 +91,7 @@ class ScaffoldKeyboard extends StatefulWidget {
     this.drawerEnableOpenDragGesture = true,
     this.endDrawerEnableOpenDragGesture = true,
     this.restorationId,
+    this.customKeyboard,
   });
 
   final bool extendBody;
@@ -118,35 +120,33 @@ class ScaffoldKeyboard extends StatefulWidget {
   final bool endDrawerEnableOpenDragGesture;
   final String? restorationId;
 
+  final Widget? customKeyboard;
+  final double padding;
+
   @override
   State<ScaffoldKeyboard> createState() => _ScaffoldKeyboardState();
 }
 
 class _ScaffoldKeyboardState extends State<ScaffoldKeyboard> {
-  late Widget? bottomSheet;
   late StreamSubscription controller;
-  double padding = 0;
+  late StreamController<(Widget?, double)> widgetController;
   @override
   void initState() {
     super.initState();
+    widgetController = StreamController.broadcast();
+    widgetController.sink.add((widget.bottomSheet, 0));
     controller = CustomKeyboardAction.instance.actionKeyboard().listen((event) {
       if (mounted) {
         if (event) {
-          setState(
-            () {
-              bottomSheet = const KeyboardAction();
-              padding = 40;
-            },
-          );
+          widgetController.sink.add((
+            widget.customKeyboard ?? const KeyboardAction(),
+            widget.padding
+          ));
         } else {
-          setState(() {
-            bottomSheet = widget.bottomSheet;
-            padding = 0;
-          });
+          widgetController.sink.add((widget.bottomSheet, 0));
         }
       }
     });
-    bottomSheet = widget.bottomSheet;
   }
 
   @override
@@ -160,12 +160,23 @@ class _ScaffoldKeyboardState extends State<ScaffoldKeyboard> {
     return Scaffold(
       appBar: widget.appBar,
       backgroundColor: widget.backgroundColor,
-      body: Padding(
-        padding: EdgeInsets.only(bottom: padding),
-        child: widget.body,
+      body: Column(
+        children: [
+          Expanded(child: widget.body ?? const SizedBox.shrink()),
+          StreamBuilder<(Widget?, double)>(
+            stream: widgetController.stream,
+            builder: (context, snapshot) => Padding(
+              padding: EdgeInsets.only(bottom: snapshot.data?.$2 ?? 0),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: widget.bottomNavigationBar,
-      bottomSheet: bottomSheet,
+      bottomSheet: StreamBuilder<(Widget?, double)>(
+        stream: widgetController.stream,
+        builder: (context, snapshot) =>
+            snapshot.data?.$1 ?? const SizedBox.shrink(),
+      ),
       drawer: widget.drawer,
       drawerDragStartBehavior: widget.drawerDragStartBehavior,
       drawerEdgeDragWidth: widget.drawerEdgeDragWidth,

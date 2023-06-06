@@ -1,5 +1,5 @@
 PODS:
-  - custom_keyboard_action (0.0.2):
+  - custom_keyboard_action (0.0.4):
     - Flutter
     - Protobuf (~> 3.5)
     - SwiftProtobuf (~> 1.0)
@@ -28,7 +28,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/integration_test/ios"
 
 SPEC CHECKSUMS:
-  custom_keyboard_action: 7cea00b541910da32a1adaaf9f0468ca580b0471
+  custom_keyboard_action: b35fc3e04737e5201f87aae31b67530c87d277a3
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   integration_test: 13825b8a9334a850581300559b8839134b124670
   Protobuf: 3dd214698ddb7afd832da281c777b2e9facef401
